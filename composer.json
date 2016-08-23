@@ -1,0 +1,6 @@
+{
+    "require-dev": {
+        "phpunit/phpunit": "^5.5",
+        "monolog/monolog": "^1.21"
+    }
+}
