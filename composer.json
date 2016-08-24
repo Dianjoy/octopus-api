@@ -1,6 +1,39 @@
 {
-    "require-dev": {
-        "phpunit/phpunit": "^5.5",
-        "monolog/monolog": "^1.21"
+  "name": "octopus/octopus",
+  "description": "A PHP framework with UI created for API.",
+  "keyword": [
+    "framework",
+    "ui",
+    "RESTful"
+  ],
+  "homepage": "https://github.com/meathill/octopus-api",
+  "license": "MIT",
+  "author": [
+    {
+      "name": "Meathill",
+      "email": "meathill@gmail.com"
     }
+  ],
+  "support": {
+    "issues": "https://github.com/meathill/octopus-api/issues",
+    "source": "https://github.com/meathill/octopus-api",
+    "docs": "https://github.com/meathill/octopus-api/wiki"
+  },
+  "require": {
+    "php": ">=5.6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.5",
+    "monolog/monolog": "^1.21"
+  },
+  "autoload": {
+    "psr-4": {
+      "Octopus\\": "app/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  }
 }
