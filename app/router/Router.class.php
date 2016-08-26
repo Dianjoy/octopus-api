@@ -9,16 +9,26 @@
 namespace Octopus\router;
 
 
-class Router {
+class Router extends AbstractRouter {
 
-  protected $dir;
+  static $adminRouter = null;
 
   public function __construct( $dir ) {
+    parent::__construct($dir);
 
-    $this->dir = $dir;
+    self::createAdminRoutes();
   }
 
   public function start() {
 
+  }
+
+  private static function createAdminRoutes() {
+    if (self::$adminRouter) {
+      return;
+    }
+
+    self::$adminRouter = new AdminRouter(self::$dir);
+    self::$adminRouter->init();
   }
 }
