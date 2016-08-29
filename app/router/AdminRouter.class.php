@@ -16,8 +16,10 @@ class AdminRouter extends AbstractRouter {
   ];
 
   public function init(  ) {
-    foreach ( self::Routes as $route => $method ) {
-      $this->route($route, $method);
+    foreach ( self::Routes as $route => $pair ) {
+      foreach ( $pair as $method => $callback ) {
+        $this->route($route, $method, $callback);
+      }
     }
   }
 }
