@@ -6,7 +6,7 @@
  * Time: 下午11:28
  */
 
-namespace Octopus\router;
+namespace Meathill\Octopus\router;
 
 
 class AdminRouter extends AbstractRouter {

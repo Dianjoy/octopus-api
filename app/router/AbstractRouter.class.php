@@ -6,9 +6,15 @@
  * Time: 下午11:42
  */
 
-namespace Octopus\router;
+namespace Meathill\Octopus\router;
 
-
+/**
+ * Class AbstractRouter
+ *
+ * @package Meathill\Octopus\router
+ *
+ * @method GET(string $route, Callable $callback)
+ */
 class AbstractRouter {
 
   static protected $map = [];
