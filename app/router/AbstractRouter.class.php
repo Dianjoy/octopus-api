@@ -14,6 +14,10 @@ namespace Meathill\Octopus\router;
  * @package Meathill\Octopus\router
  *
  * @method GET(string $route, Callable $callback)
+ * @method POST(string $route, Callable $callback)
+ * @method PUT(string $route, Callable $callback)
+ * @method DELETE(string $route, Callable $callback)
+ * @method OPTIONS(string $route, Callable $callback)
  */
 class AbstractRouter {
 
