@@ -12,5 +12,7 @@ namespace Test;
 use PHPUnit_Framework_TestCase;
 
 class InstallTest extends PHPUnit_Framework_TestCase {
-
+  public function testTables(  ) {
+    
+  }
 }

@@ -21,28 +21,43 @@ class RouterTest extends PHPUnit_Framework_TestCase {
   protected $putID;
   protected $deleted;
   protected $deleteID;
+  /**
+   * @var Router
+   */
+  protected $router;
 
-  public function testRouter(  ) {
-    $router = new Router(__DIR__);
-    $router->GET('user', [$this, 'onGET_user']);
-    $router->GET('user/:id', [$this, 'onGET_userID']);
-    $router->POST('user/', [$this, 'onPOST_user']);
-    $router->PUT('user/:id', [$this, 'onPUT_user']);
-    $router->DELETE('user/:id', [$this, 'onDELETE_user']);
+  protected function setUp() {
+    $this->router = new Router(__DIR__);
+  }
+
+  public function testGET( ) {
+    $this->router->GET('user', [$this, 'onGET_user']);
+    $this->router->GET('user/:id', [$this, 'onGET_userID']);
 
     $this->assertTrue($this->get);
     $this->assertEquals(1, $this->id);
+
+    $this->router->GET('user/(\d+)', [$this, 'onGET_userID']);
+    $this->assertNotEquals('abc', $this->id);
+    $this->router->GET('user/([\w_]+)', [$this, 'onGET_userID']);
+    $this->assertEquals('abc', $this->id);
+  }
+
+  public function testPOST() {
+    $this->router->POST('user/', [$this, 'onPOST_user']);
     $this->assertTrue($this->posted);
+  }
+
+  public function testPUT() {
+    $this->router->PUT('user/:id', [$this, 'onPUT_user']);
     $this->assertTrue($this->put);
     $this->assertEquals(123, $this->putID);
+  }
+
+  public function testDELETE(  ) {
+    $this->router->DELETE('user/:id', [$this, 'onDELETE_user']);
     $this->assertTrue($this->deleted);
     $this->assertEquals(1234, $this->deleteID);
-
-
-    $router->GET('user/(\d+)', [$this, 'onGET_userID']);
-    $this->assertNotEquals('abc', $this->id);
-    $router->GET('user/([\w_]+)', [$this, 'onGET_userID']);
-    $this->assertEquals('abc', $this->id);
   }
 
   // 测试 GET /user 请求
