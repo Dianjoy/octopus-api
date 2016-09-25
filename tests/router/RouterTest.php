@@ -34,28 +34,35 @@ class RouterTest extends PHPUnit_Framework_TestCase {
     $this->router->GET('user', [$this, 'onGET_user']);
     $this->router->GET('user/:id', [$this, 'onGET_userID']);
 
+    $this->router->navigate('get', 'user');
     $this->assertTrue($this->get);
+    $this->router->navigate('get', 'user/1');
     $this->assertEquals(1, $this->id);
 
     $this->router->GET('user/(\d+)', [$this, 'onGET_userID']);
-    $this->assertNotEquals('abc', $this->id);
-    $this->router->GET('user/([\w_]+)', [$this, 'onGET_userID']);
+    $this->router->navigate('GET', 'user/abc');
     $this->assertEquals('abc', $this->id);
+    $this->router->GET('user/([\w_]+)', [$this, 'onGET_userID']);
+    $this->router->navigate('get', 'user/123');
+    $this->assertEquals(123, $this->id);
   }
 
   public function testPOST() {
     $this->router->POST('user/', [$this, 'onPOST_user']);
+    $this->router->navigate('post', 'user');
     $this->assertTrue($this->posted);
   }
 
   public function testPUT() {
     $this->router->PUT('user/:id', [$this, 'onPUT_user']);
+    $this->router->navigate('put', 'user/123');
     $this->assertTrue($this->put);
     $this->assertEquals(123, $this->putID);
   }
 
   public function testDELETE(  ) {
     $this->router->DELETE('user/:id', [$this, 'onDELETE_user']);
+    $this->router->navigate('delete', 'user/1234');
     $this->assertTrue($this->deleted);
     $this->assertEquals(1234, $this->deleteID);
   }

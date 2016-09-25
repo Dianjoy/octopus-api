@@ -42,7 +42,26 @@ class AbstractRouter {
     return $this;
   }
 
+  public function navigate( $method, $uri ) {
+    self::_navigate($method, $uri);
+  }
+
   public function route( $route, $method, $callback ) {
     self::$map[$this->group . $route][$method][] = $callback;
+  }
+
+  public function start(  ) {
+    self::_start();
+  }
+
+  public static function _start() {
+    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    self::navigate($method, $uri);
+  }
+
+  public static function _navigate( $method, $uri ) {
+    $method = strtoupper($method);
   }
 }

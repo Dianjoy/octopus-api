@@ -19,10 +19,6 @@ class Router extends AbstractRouter {
     self::createAdminRoutes();
   }
 
-  public static function start() {
-
-  }
-
   private static function createAdminRoutes() {
     if (self::$adminRouter) {
       return;
