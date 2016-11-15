@@ -38,6 +38,9 @@
       "Tests\\": "tests/"
     }
   },
+  "scripts": {
+    "server-start": "cd server && php -S localhost:8888 ./routing.php"
+  },
   "minimum-stability": "dev",
   "prefer-stable": true
 }
